@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-
-
 export const SignupForm = () => {
   const [customers, setCustomers] = useState([{}]);
   const [refreshPage, setRefreshPage] = useState(false);
@@ -18,8 +16,7 @@ export const SignupForm = () => {
         console.log(data);
       });
   }, [refreshPage]);
-  
-//checking input validation using Yup and Formik
+
   const formSchema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Must enter email"),
     name: yup.string().required("Must enter a name").max(15),
@@ -47,7 +44,7 @@ export const SignupForm = () => {
         },
         body: JSON.stringify(values, null, 2),
       }).then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           setRefreshPage(!refreshPage);
         }
       });
@@ -56,7 +53,6 @@ export const SignupForm = () => {
 
   return (
     <div>
-      <h1>Customer sign up form</h1>
       <form onSubmit={formik.handleSubmit} style={{ margin: "30px" }}>
         <label htmlFor="email">Email Address</label>
         <br />
