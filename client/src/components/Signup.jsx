@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+
+
 export const SignupForm = () => {
   const [customers, setCustomers] = useState([{}]);
   const [refreshPage, setRefreshPage] = useState(false);
@@ -16,7 +18,8 @@ export const SignupForm = () => {
         console.log(data);
       });
   }, [refreshPage]);
-
+  
+//checking input validation using Yup and Formik
   const formSchema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Must enter email"),
     name: yup.string().required("Must enter a name").max(15),
